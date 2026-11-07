@@ -1,1 +1,503 @@
+<!DOCTYPE html>
 
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Clearview CRM</title>
+
+<style>
+
+:root {
+
+  --navy:#172b42;
+
+  --blue:#315b7d;
+
+  --bg:#f4f6f8;
+
+  --white:#ffffff;
+
+  --muted:#7b8794;
+
+  --border:#e4e9ee;
+
+  --green:#398267;
+
+}
+
+*{box-sizing:border-box}
+
+body{
+
+  margin:0;background:var(--bg);color:#202b36;
+
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+}
+
+header{
+
+  background:var(--navy);color:white;padding:22px 24px;
+
+  display:flex;justify-content:space-between;align-items:center;
+
+}
+
+.brand{font-size:21px;font-weight:700;letter-spacing:.3px}
+
+.brand small{display:block;font-size:11px;font-weight:400;opacity:.7;margin-top:4px}
+
+main{max-width:1100px;margin:auto;padding:25px 20px 60px}
+
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+
+h1{font-size:27px;margin:5px 0}
+
+.subtitle{color:var(--muted);font-size:14px;margin-top:6px}
+
+button{
+
+  border:0;border-radius:8px;padding:11px 16px;
+
+  background:var(--navy);color:white;font-size:14px;
+
+  cursor:pointer;font-weight:600;
+
+}
+
+button.secondary{background:white;color:var(--navy);border:1px solid var(--border)}
+
+nav{
+
+  display:flex;gap:8px;overflow-x:auto;padding:15px 0;
+
+  border-bottom:1px solid var(--border);margin-bottom:24px;
+
+}
+
+nav button{white-space:nowrap;background:transparent;color:#687584}
+
+nav button.active{background:var(--navy);color:white}
+
+.cards{
+
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+
+  margin:24px 0;
+
+}
+
+.card,.panel{
+
+  background:white;border:1px solid var(--border);
+
+  border-radius:12px;padding:19px;
+
+}
+
+.card p{font-size:13px;color:var(--muted);margin:0 0 13px}
+
+.card strong{font-size:28px;color:var(--navy)}
+
+.panel{margin-top:18px}
+
+.panel h2{font-size:17px;margin:0 0 18px}
+
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+
+th{text-align:left;color:var(--muted);font-size:12px;font-weight:600}
+
+td,th{padding:13px 8px;border-bottom:1px solid var(--border)}
+
+.empty{text-align:center;color:var(--muted);padding:28px 8px}
+
+.tag{background:#edf3f6;color:var(--blue);padding:5px 9px;border-radius:20px;font-size:12px}
+
+.section{display:none}
+
+.section.active{display:block}
+
+input,select,textarea{
+
+  width:100%;padding:12px;border:1px solid var(--border);
+
+  border-radius:8px;font:inherit;background:white;margin:6px 0 15px;
+
+}
+
+label{font-size:13px;font-weight:600;color:#536170}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+.modal{
+
+  display:none;position:fixed;inset:0;background:#101b2b99;
+
+  align-items:center;justify-content:center;padding:18px;z-index:5;
+
+}
+
+.modal.open{display:flex}
+
+.modal-box{
+
+  background:white;border-radius:14px;padding:24px;
+
+  width:100%;max-width:470px;max-height:90vh;overflow:auto;
+
+}
+
+.modal-box h2{margin-top:0}
+
+.actions{display:flex;gap:9px;justify-content:flex-end}
+
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:35px}
+
+@media(max-width:650px){
+
+  .cards{grid-template-columns:repeat(2,1fr)}
+
+  main{padding:20px 14px 45px}
+
+  header{padding:18px}
+
+  .form-grid{grid-template-columns:1fr}
+
+  table{font-size:12px}
+
+  td,th{padding:11px 5px}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="brand">CLEARVIEW <small>BUSINESS MANAGEMENT</small></div>
+
+  <span id="today"></span>
+
+</header>
+
+<main>
+
+  <div class="topline">
+
+    <div>
+
+      <h1 id="pageTitle">Dashboard</h1>
+
+      <div class="subtitle">A clearer view of your business.</div>
+
+    </div>
+
+    <button onclick="openModal()">+ Add new</button>
+
+  </div>
+
+  <nav>
+
+    <button class="active" onclick="showPage('dashboard',this)">Overview</button>
+
+    <button onclick="showPage('customers',this)">Customers</button>
+
+    <button onclick="showPage('jobs',this)">Jobs</button>
+
+    <button onclick="showPage('schedule',this)">Schedule</button>
+
+    <button onclick="showPage('estimates',this)">Estimates</button>
+
+    <button onclick="showPage('invoices',this)">Invoices</button>
+
+  </nav>
+
+  <section id="dashboard" class="section active">
+
+    <div class="cards">
+
+      <div class="card"><p>Total customers</p><strong id="customerCount">0</strong></div>
+
+      <div class="card"><p>Active jobs</p><strong id="jobCount">0</strong></div>
+
+      <div class="card"><p>Upcoming jobs</p><strong id="upcomingCount">0</strong></div>
+
+      <div class="card"><p>Outstanding invoices</p><strong id="invoiceCount">0</strong></div>
+
+    </div>
+
+    <div class="panel">
+
+      <h2>Recent activity</h2>
+
+      <div id="activity" class="empty">Your business activity will appear here.</div>
+
+    </div>
+
+    <div class="panel">
+
+      <h2>Getting started</h2>
+
+      <p class="subtitle">Your workspace is ready. Start by adding your first customer.</p>
+
+      <button onclick="openModal('customer')">Add your first customer</button>
+
+    </div>
+
+  </section>
+
+  <section id="customers" class="section">
+
+    <div class="panel">
+
+      <div class="panel-head"><h2>Customer directory</h2><button onclick="openModal('customer')">+ Customer</button></div>
+
+      <div id="customerTable"></div>
+
+    </div>
+
+  </section>
+
+  <section id="jobs" class="section">
+
+    <div class="panel">
+
+      <div class="panel-head"><h2>Job management</h2><button onclick="openModal('job')">+ Job</button></div>
+
+      <div id="jobTable"></div>
+
+    </div>
+
+  </section>
+
+  <section id="schedule" class="section">
+
+    <div class="panel">
+
+      <div class="panel-head"><h2>Schedule</h2><button onclick="openModal('job')">+ Schedule job</button></div>
+
+      <div id="scheduleTable"></div>
+
+    </div>
+
+  </section>
+
+  <section id="estimates" class="section">
+
+    <div class="panel">
+
+      <div class="panel-head"><h2>Estimates</h2></div>
+
+      <p class="subtitle">Estimate tracking will be added in the next development stage.</p>
+
+    </div>
+
+  </section>
+
+  <section id="invoices" class="section">
+
+    <div class="panel">
+
+      <div class="panel-head"><h2>Invoices</h2></div>
+
+      <p class="subtitle">Invoice and payment tracking will be added in the next development stage.</p>
+
+    </div>
+
+  </section>
+
+  <footer> CLEARVIEW CRM · YOUR BUSINESS, ORGANIZED.</footer>
+
+</main>
+
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <h2 id="modalTitle">Add customer</h2>
+
+    <form id="entryForm">
+
+      <div id="formFields"></div>
+
+      <div class="actions">
+
+        <button type="button" class="secondary" onclick="closeModal()">Cancel</button>
+
+        <button type="submit">Save</button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+
+const load = key => JSON.parse(localStorage.getItem(key)||"[]");
+
+let customers=load("cv_customers");
+
+let jobs=load("cv_jobs");
+
+let currentType="customer";
+
+document.getElementById("today").textContent=
+
+  new Date().toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+
+function save(){
+
+  localStorage.setItem("cv_customers",JSON.stringify(customers));
+
+  localStorage.setItem("cv_jobs",JSON.stringify(jobs));
+
+  render();
+
+}
+
+function showPage(page,button){
+
+  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+
+  document.getElementById(page).classList.add("active");
+
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  document.getElementById("pageTitle").textContent=
+
+    page.charAt(0).toUpperCase()+page.slice(1);
+
+}
+
+function openModal(type="customer"){
+
+  currentType=type;
+
+  document.getElementById("modalTitle").textContent=
+
+    type==="customer"?"Add customer":"Add job";
+
+  const fields=type==="customer"
+
+  ? `<label>Customer name</label><input name="name" required placeholder="Full name">
+
+     <label>Phone number</label><input name="phone" placeholder="Phone">
+
+     <label>Email address</label><input name="email" type="email" placeholder="Email">
+
+     <label>Address</label><input name="address" placeholder="Service address">`
+
+  : `<label>Job title</label><input name="title" required placeholder="Window cleaning">
+
+     <label>Customer</label><select name="customer" required>
+
+       <option value="">Select customer</option>
+
+       ${customers.map(c=>`<option>${escapeHTML(c.name)}</option>`).join("")}
+
+     </select>
+
+     <label>Job date</label><input name="date" type="date" required>
+
+     <label>Status</label><select name="status"><option>Scheduled</option><option>In progress</option><option>Completed</option></select>`;
+
+  document.getElementById("formFields").innerHTML=fields;
+
+  document.getElementById("modal").classList.add("open");
+
+}
+
+function closeModal(){document.getElementById("modal").classList.remove("open")}
+
+function escapeHTML(value){
+
+  return String(value||"").replace(/[&<>"']/g,c=>({
+
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+
+  })[c]);
+
+}
+
+document.getElementById("entryForm").addEventListener("submit",e=>{
+
+  e.preventDefault();
+
+  const data=Object.fromEntries(new FormData(e.target));
+
+  if(currentType==="customer")customers.push(data);
+
+  else jobs.push(data);
+
+  save();closeModal();e.target.reset();
+
+});
+
+function makeTable(headers,rows){
+
+  if(!rows.length)return '<div class="empty">Nothing here yet. Add your first entry to get started.</div>';
+
+  return `<div style="overflow-x:auto"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table></div>`;
+
+}
+
+function render(){
+
+  document.getElementById("customerCount").textContent=customers.length;
+
+  document.getElementById("jobCount").textContent=jobs.filter(j=>j.status!=="Completed").length;
+
+  document.getElementById("upcomingCount").textContent=jobs.filter(j=>j.date>=new Date().toISOString().slice(0,10)&&j.status==="Scheduled").length;
+
+  document.getElementById("invoiceCount").textContent="0";
+
+  document.getElementById("customerTable").innerHTML=makeTable(
+
+    ["Name","Phone","Email"],
+
+    customers.map(c=>`<tr><td>${escapeHTML(c.name)}</td><td>${escapeHTML(c.phone)}</td><td>${escapeHTML(c.email)}</td></tr>`)
+
+  );
+
+  const jobRows=jobs.map(j=>`<tr><td>${escapeHTML(j.title)}</td><td>${escapeHTML(j.customer)}</td><td>${escapeHTML(j.date)}</td><td><span class="tag">${escapeHTML(j.status)}</span></td></tr>`);
+
+  document.getElementById("jobTable").innerHTML=makeTable(["Job","Customer","Date","Status"],jobRows);
+
+  document.getElementById("scheduleTable").innerHTML=makeTable(["Date","Job","Customer","Status"],
+
+    jobs.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(j=>`<tr><td>${escapeHTML(j.date)}</td><td>${escapeHTML(j.title)}</td><td>${escapeHTML(j.customer)}</td><td>${escapeHTML(j.status)}</td></tr>`)
+
+  );
+
+  const activity=[...customers.map(c=>"Customer added: "+c.name),...jobs.map(j=>"Job created: "+j.title)].slice(-5).reverse();
+
+  document.getElementById("activity").innerHTML=activity.length
+
+    ? activity.map(a=>`<p>${escapeHTML(a)}</p>`).join("")
+
+    : "Your business activity will appear here.";
+
+}
+
+render();
+
+</script>
+
+</body>
+
+</html>
