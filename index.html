@@ -12,21 +12,13 @@
 
 <style>
 
-:root {
+:root{
 
-  --navy:#172b42;
+ --navy:#172b42;--blue:#315b7d;--bg:#f4f6f8;
 
-  --blue:#315b7d;
+ --white:#fff;--muted:#7b8794;--border:#e4e9ee;
 
-  --bg:#f4f6f8;
-
-  --white:#ffffff;
-
-  --muted:#7b8794;
-
-  --border:#e4e9ee;
-
-  --green:#398267;
+ --green:#398267;--red:#b94b4b;
 
 }
 
@@ -34,49 +26,67 @@
 
 body{
 
-  margin:0;background:var(--bg);color:#202b36;
+ margin:0;background:var(--bg);color:#202b36;
 
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 
 }
 
 header{
 
-  background:var(--navy);color:white;padding:22px 24px;
+ background:var(--navy);color:white;padding:19px 24px;
 
-  display:flex;justify-content:space-between;align-items:center;
+ display:flex;justify-content:space-between;align-items:center;gap:12px;
 
 }
 
-.brand{font-size:21px;font-weight:700;letter-spacing:.3px}
+.brand-wrap{display:flex;align-items:center;gap:12px}
+
+.brand{font-size:21px;font-weight:700;letter-spacing:.5px}
 
 .brand small{display:block;font-size:11px;font-weight:400;opacity:.7;margin-top:4px}
 
-main{max-width:1100px;margin:auto;padding:25px 20px 60px}
+.logo{width:43px;height:48px;flex-shrink:0}
 
-.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+main{max-width:1150px;margin:auto;padding:25px 20px 60px}
+
+.topline,.panel-head{
+
+ display:flex;justify-content:space-between;align-items:center;
+
+ gap:12px;flex-wrap:wrap;
+
+}
 
 h1{font-size:27px;margin:5px 0}
+
+h2{font-size:17px;margin:0 0 17px}
+
+h3{font-size:15px}
 
 .subtitle{color:var(--muted);font-size:14px;margin-top:6px}
 
 button{
 
-  border:0;border-radius:8px;padding:11px 16px;
+ border:0;border-radius:8px;padding:11px 15px;
 
-  background:var(--navy);color:white;font-size:14px;
+ background:var(--navy);color:white;font-size:14px;
 
-  cursor:pointer;font-weight:600;
+ cursor:pointer;font-weight:600;
 
 }
 
 button.secondary{background:white;color:var(--navy);border:1px solid var(--border)}
 
+button.danger{background:#fff0f0;color:var(--red);border:1px solid #f0d5d5}
+
+button.small{padding:7px 10px;font-size:12px}
+
 nav{
 
-  display:flex;gap:8px;overflow-x:auto;padding:15px 0;
+ display:flex;gap:8px;overflow-x:auto;padding:15px 0;
 
-  border-bottom:1px solid var(--border);margin-bottom:24px;
+ border-bottom:1px solid var(--border);margin-bottom:24px;
 
 }
 
@@ -84,19 +94,13 @@ nav button{white-space:nowrap;background:transparent;color:#687584}
 
 nav button.active{background:var(--navy);color:white}
 
-.cards{
-
-  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
-
-  margin:24px 0;
-
-}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}
 
 .card,.panel{
 
-  background:white;border:1px solid var(--border);
+ background:white;border:1px solid var(--border);
 
-  border-radius:12px;padding:19px;
+ border-radius:12px;padding:19px;
 
 }
 
@@ -105,10 +109,6 @@ nav button.active{background:var(--navy);color:white}
 .card strong{font-size:28px;color:var(--navy)}
 
 .panel{margin-top:18px}
-
-.panel h2{font-size:17px;margin:0 0 18px}
-
-.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
 
 table{width:100%;border-collapse:collapse;font-size:14px}
 
@@ -126,9 +126,9 @@ td,th{padding:13px 8px;border-bottom:1px solid var(--border)}
 
 input,select,textarea{
 
-  width:100%;padding:12px;border:1px solid var(--border);
+ width:100%;padding:12px;border:1px solid var(--border);
 
-  border-radius:8px;font:inherit;background:white;margin:6px 0 15px;
+ border-radius:8px;font:inherit;background:white;margin:6px 0 15px;
 
 }
 
@@ -138,9 +138,9 @@ label{font-size:13px;font-weight:600;color:#536170}
 
 .modal{
 
-  display:none;position:fixed;inset:0;background:#101b2b99;
+ display:none;position:fixed;inset:0;background:#101b2b99;
 
-  align-items:center;justify-content:center;padding:18px;z-index:5;
+ align-items:center;justify-content:center;padding:18px;z-index:5;
 
 }
 
@@ -148,31 +148,83 @@ label{font-size:13px;font-weight:600;color:#536170}
 
 .modal-box{
 
-  background:white;border-radius:14px;padding:24px;
+ background:white;border-radius:14px;padding:24px;
 
-  width:100%;max-width:470px;max-height:90vh;overflow:auto;
+ width:100%;max-width:470px;max-height:90vh;overflow:auto;
 
 }
 
 .modal-box h2{margin-top:0}
 
-.actions{display:flex;gap:9px;justify-content:flex-end}
+.actions{display:flex;gap:9px;justify-content:flex-end;flex-wrap:wrap}
 
 footer{text-align:center;color:var(--muted);font-size:12px;margin-top:35px}
 
-@media(max-width:650px){
+.year-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 
-  .cards{grid-template-columns:repeat(2,1fr)}
+.month{border:1px solid var(--border);border-radius:10px;padding:12px;min-width:0}
 
-  main{padding:20px 14px 45px}
+.month h3{margin:0 0 10px;color:var(--navy)}
 
-  header{padding:18px}
+.month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
 
-  .form-grid{grid-template-columns:1fr}
+.weekday{text-align:center;font-size:10px;color:var(--muted);padding:4px 0}
 
-  table{font-size:12px}
+.day{
 
-  td,th{padding:11px 5px}
+ position:relative;border:0;background:#f5f7f9;color:#344252;
+
+ padding:7px 0;border-radius:5px;font-size:11px;min-width:0;
+
+}
+
+.day.blank{visibility:hidden}
+
+.day.booked{background:#e1eee9;color:#24654d;font-weight:700}
+
+.day.selected{outline:2px solid var(--blue);outline-offset:1px}
+
+.day.today{border:1px solid var(--blue)}
+
+.day .dot{display:block;width:5px;height:5px;border-radius:50%;background:var(--green);margin:3px auto 0}
+
+.calendar-tools{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+
+.calendar-tools h2{margin:0;font-size:21px}
+
+.section-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+#dateDetails{margin-top:18px}
+
+#toast{
+
+ position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+
+ background:var(--navy);color:white;padding:12px 18px;border-radius:9px;
+
+ display:none;z-index:10;max-width:90%;font-size:14px;
+
+}
+
+@media(max-width:750px){
+
+ .year-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+ .cards{grid-template-columns:repeat(2,1fr)}
+
+}
+
+@media(max-width:480px){
+
+ main{padding:18px 12px 40px}
+
+ header{padding:15px}
+
+ .year-grid{grid-template-columns:1fr}
+
+ .form-grid{grid-template-columns:1fr}
+
+ .card,.panel{padding:14px}
 
 }
 
@@ -184,169 +236,243 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:35px}
 
 <header>
 
-  <div class="brand">CLEARVIEW <small>BUSINESS MANAGEMENT</small></div>
+ <div class="brand-wrap">
 
-  <span id="today"></span>
+  <svg class="logo" viewBox="0 0 64 72" role="img" aria-label="Clearview shield CV logo">
+
+   <path d="M32 3 L58 13 V34 C58 50 47 62 32 69 C17 62 6 50 6 34 V13 Z"
+
+    fill="none" stroke="#dce8f1" stroke-width="3"/>
+
+   <path d="M32 10 L51 17 V34 C51 46 43 56 32 62 C21 56 13 46 13 34 V17 Z"
+
+    fill="#315b7d" stroke="#8eabc0" stroke-width="1.5"/>
+
+   <text x="32" y="40" text-anchor="middle" font-size="19"
+
+    font-family="Georgia,serif" font-weight="bold" fill="white">CV</text>
+
+  </svg>
+
+  <div class="brand">CLEARVIEW<small>BUSINESS MANAGEMENT</small></div>
+
+ </div>
+
+ <span id="today"></span>
 
 </header>
 
 <main>
 
-  <div class="topline">
+ <div class="topline">
 
-    <div>
+  <div>
 
-      <h1 id="pageTitle">Dashboard</h1>
+   <h1 id="pageTitle">Dashboard</h1>
 
-      <div class="subtitle">A clearer view of your business.</div>
-
-    </div>
-
-    <button onclick="openModal()">+ Add new</button>
+   <div class="subtitle">A clearer view of your business.</div>
 
   </div>
 
-  <nav>
+  <button onclick="openModal()">+ Add new</button>
 
-    <button class="active" onclick="showPage('dashboard',this)">Overview</button>
+ </div>
 
-    <button onclick="showPage('customers',this)">Customers</button>
+ <nav>
 
-    <button onclick="showPage('jobs',this)">Jobs</button>
+  <button class="active" onclick="showPage('dashboard',this)">Overview</button>
 
-    <button onclick="showPage('schedule',this)">Schedule</button>
+  <button onclick="showPage('customers',this)">Customers</button>
 
-    <button onclick="showPage('estimates',this)">Estimates</button>
+  <button onclick="showPage('jobs',this)">Jobs</button>
 
-    <button onclick="showPage('invoices',this)">Invoices</button>
+  <button onclick="showPage('schedule',this)">Calendar</button>
 
-  </nav>
+  <button onclick="showPage('estimates',this)">Estimates</button>
 
-  <section id="dashboard" class="section active">
+  <button onclick="showPage('invoices',this)">Invoices</button>
 
-    <div class="cards">
+ </nav>
 
-      <div class="card"><p>Total customers</p><strong id="customerCount">0</strong></div>
+ <section id="dashboard" class="section active">
 
-      <div class="card"><p>Active jobs</p><strong id="jobCount">0</strong></div>
+  <div class="cards">
 
-      <div class="card"><p>Upcoming jobs</p><strong id="upcomingCount">0</strong></div>
+   <div class="card"><p>Total customers</p><strong id="customerCount">0</strong></div>
 
-      <div class="card"><p>Outstanding invoices</p><strong id="invoiceCount">0</strong></div>
+   <div class="card"><p>Active jobs</p><strong id="jobCount">0</strong></div>
+
+   <div class="card"><p>Upcoming jobs</p><strong id="upcomingCount">0</strong></div>
+
+   <div class="card"><p>Outstanding invoices</p><strong id="invoiceCount">0</strong></div>
+
+  </div>
+
+  <div class="panel">
+
+   <h2>Recent activity</h2>
+
+   <div id="activity" class="empty">Your business activity will appear here.</div>
+
+  </div>
+
+  <div class="panel">
+
+   <div class="panel-head">
+
+    <h2>Job notifications</h2>
+
+    <button class="secondary" onclick="enableNotifications()">Enable notifications</button>
+
+   </div>
+
+   <p class="subtitle" id="notificationStatus">Notifications have not been enabled yet.</p>
+
+   <p class="subtitle">Reminders are checked while this website is open.</p>
+
+   <p class="subtitle">You can also view your upcoming jobs in the Calendar tab.</p>
+
+  </div>
+
+  <div class="panel">
+
+   <h2>Getting started</h2>
+
+   <p class="subtitle">Your workspace is ready. Start by adding your first customer.</p>
+
+   <button onclick="openModal('customer')">Add your first customer</button>
+
+  </div>
+
+ </section>
+
+ <section id="customers" class="section">
+
+  <div class="panel">
+
+   <div class="panel-head">
+
+    <h2>Customer directory</h2>
+
+    <button onclick="openModal('customer')">+ Customer</button>
+
+   </div>
+
+   <div id="customerTable"></div>
+
+  </div>
+
+ </section>
+
+ <section id="jobs" class="section">
+
+  <div class="panel">
+
+   <div class="panel-head">
+
+    <h2>Job management</h2>
+
+    <button onclick="openModal('job')">+ Job</button>
+
+   </div>
+
+   <div id="jobTable"></div>
+
+  </div>
+
+ </section>
+
+ <section id="schedule" class="section">
+
+  <div class="panel">
+
+   <div class="calendar-tools">
+
+    <div>
+
+     <h2 id="calendarYear"></h2>
+
+     <p class="subtitle">Your full-year booking calendar</p>
 
     </div>
 
-    <div class="panel">
+    <div class="section-actions">
 
-      <h2>Recent activity</h2>
+     <button class="secondary" onclick="changeYear(-1)">← Previous</button>
 
-      <div id="activity" class="empty">Your business activity will appear here.</div>
+     <button class="secondary" onclick="changeYear(1)">Next →</button>
 
-    </div>
-
-    <div class="panel">
-
-      <h2>Getting started</h2>
-
-      <p class="subtitle">Your workspace is ready. Start by adding your first customer.</p>
-
-      <button onclick="openModal('customer')">Add your first customer</button>
+     <button onclick="goToToday()">Today</button>
 
     </div>
 
-  </section>
+   </div>
 
-  <section id="customers" class="section">
+   <div id="yearCalendar" class="year-grid"></div>
 
-    <div class="panel">
+   <div id="dateDetails"></div>
 
-      <div class="panel-head"><h2>Customer directory</h2><button onclick="openModal('customer')">+ Customer</button></div>
+  </div>
 
-      <div id="customerTable"></div>
+ </section>
 
-    </div>
+ <section id="estimates" class="section">
 
-  </section>
+  <div class="panel">
 
-  <section id="jobs" class="section">
+   <h2>Estimates</h2>
 
-    <div class="panel">
+   <p class="subtitle">Estimate tracking will be added in a future development stage.</p>
 
-      <div class="panel-head"><h2>Job management</h2><button onclick="openModal('job')">+ Job</button></div>
+  </div>
 
-      <div id="jobTable"></div>
+ </section>
 
-    </div>
+ <section id="invoices" class="section">
 
-  </section>
+  <div class="panel">
 
-  <section id="schedule" class="section">
+   <h2>Invoices</h2>
 
-    <div class="panel">
+   <p class="subtitle">Invoice and payment tracking will be added in a future development stage.</p>
 
-      <div class="panel-head"><h2>Schedule</h2><button onclick="openModal('job')">+ Schedule job</button></div>
+  </div>
 
-      <div id="scheduleTable"></div>
+ </section>
 
-    </div>
-
-  </section>
-
-  <section id="estimates" class="section">
-
-    <div class="panel">
-
-      <div class="panel-head"><h2>Estimates</h2></div>
-
-      <p class="subtitle">Estimate tracking will be added in the next development stage.</p>
-
-    </div>
-
-  </section>
-
-  <section id="invoices" class="section">
-
-    <div class="panel">
-
-      <div class="panel-head"><h2>Invoices</h2></div>
-
-      <p class="subtitle">Invoice and payment tracking will be added in the next development stage.</p>
-
-    </div>
-
-  </section>
-
-  <footer> CLEARVIEW CRM · YOUR BUSINESS, ORGANIZED.</footer>
+ <footer>CLEARVIEW CRM · YOUR BUSINESS, ORGANIZED.</footer>
 
 </main>
 
 <div class="modal" id="modal">
 
-  <div class="modal-box">
+ <div class="modal-box">
 
-    <h2 id="modalTitle">Add customer</h2>
+  <h2 id="modalTitle">Add customer</h2>
 
-    <form id="entryForm">
+  <form id="entryForm">
 
-      <div id="formFields"></div>
+   <div id="formFields"></div>
 
-      <div class="actions">
+   <div class="actions">
 
-        <button type="button" class="secondary" onclick="closeModal()">Cancel</button>
+    <button type="button" class="secondary" onclick="closeModal()">Cancel</button>
 
-        <button type="submit">Save</button>
+    <button type="submit">Save</button>
 
-      </div>
+   </div>
 
-    </form>
+  </form>
 
-  </div>
+ </div>
 
 </div>
 
+<div id="toast"></div>
+
 <script>
 
-const load = key => JSON.parse(localStorage.getItem(key)||"[]");
+const load=key=>JSON.parse(localStorage.getItem(key)||"[]");
 
 let customers=load("cv_customers");
 
@@ -354,147 +480,495 @@ let jobs=load("cv_jobs");
 
 let currentType="customer";
 
+let editingIndex=null;
+
+let calendarYear=new Date().getFullYear();
+
+let selectedDate=localDate(new Date());
+
+function localDate(d){
+
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+
+}
+
+function escapeHTML(value){
+
+ return String(value||"").replace(/[&<>"']/g,c=>({
+
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+
+ })[c]);
+
+}
+
+function toast(message){
+
+ const el=document.getElementById("toast");
+
+ el.textContent=message;
+
+ el.style.display="block";
+
+ clearTimeout(window.toastTimer);
+
+ window.toastTimer=setTimeout(()=>el.style.display="none",3500);
+
+}
+
 document.getElementById("today").textContent=
 
-  new Date().toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+ new Date().toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
 
 function save(){
 
-  localStorage.setItem("cv_customers",JSON.stringify(customers));
+ localStorage.setItem("cv_customers",JSON.stringify(customers));
 
-  localStorage.setItem("cv_jobs",JSON.stringify(jobs));
+ localStorage.setItem("cv_jobs",JSON.stringify(jobs));
 
-  render();
+ render();
 
 }
 
 function showPage(page,button){
 
-  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+ document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
 
-  document.getElementById(page).classList.add("active");
+ document.getElementById(page).classList.add("active");
 
-  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+ document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
 
-  button.classList.add("active");
+ button.classList.add("active");
 
-  document.getElementById("pageTitle").textContent=
+ document.getElementById("pageTitle").textContent=
 
-    page.charAt(0).toUpperCase()+page.slice(1);
+  page==="schedule"?"Calendar":page.charAt(0).toUpperCase()+page.slice(1);
 
-}
-
-function openModal(type="customer"){
-
-  currentType=type;
-
-  document.getElementById("modalTitle").textContent=
-
-    type==="customer"?"Add customer":"Add job";
-
-  const fields=type==="customer"
-
-  ? `<label>Customer name</label><input name="name" required placeholder="Full name">
-
-     <label>Phone number</label><input name="phone" placeholder="Phone">
-
-     <label>Email address</label><input name="email" type="email" placeholder="Email">
-
-     <label>Address</label><input name="address" placeholder="Service address">`
-
-  : `<label>Job title</label><input name="title" required placeholder="Window cleaning">
-
-     <label>Customer</label><select name="customer" required>
-
-       <option value="">Select customer</option>
-
-       ${customers.map(c=>`<option>${escapeHTML(c.name)}</option>`).join("")}
-
-     </select>
-
-     <label>Job date</label><input name="date" type="date" required>
-
-     <label>Status</label><select name="status"><option>Scheduled</option><option>In progress</option><option>Completed</option></select>`;
-
-  document.getElementById("formFields").innerHTML=fields;
-
-  document.getElementById("modal").classList.add("open");
+ if(page==="schedule")renderCalendar();
 
 }
 
-function closeModal(){document.getElementById("modal").classList.remove("open")}
+function openModal(type="customer",index=null){
 
-function escapeHTML(value){
+ currentType=type;
 
-  return String(value||"").replace(/[&<>"']/g,c=>({
+ editingIndex=index;
 
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ const existing=index!==null?jobs[index]:null;
 
-  })[c]);
+ document.getElementById("modalTitle").textContent=
+
+  type==="customer"?"Add customer":(existing?"Edit job":"Add job");
+
+ const fields=type==="customer"
+
+ ? `<label>Customer name</label><input name="name" required placeholder="Full name">
+
+    <label>Phone number</label><input name="phone" placeholder="Phone">
+
+    <label>Email address</label><input name="email" type="email" placeholder="Email">
+
+    <label>Address</label><input name="address" placeholder="Service address">`
+
+ : `<label>Job title</label><input name="title" required placeholder="Window cleaning" value="${escapeHTML(existing?.title)}">
+
+    <label>Customer</label><select name="customer" required>
+
+     <option value="">Select customer</option>
+
+     ${customers.map(c=>`<option ${existing?.customer===c.name?"selected":""}>${escapeHTML(c.name)}</option>`).join("")}
+
+    </select>
+
+    <div class="form-grid">
+
+     <div><label>Job date</label><input name="date" type="date" required value="${escapeHTML(existing?.date)}"></div>
+
+     <div><label>Job time (optional)</label><input name="time" type="time" value="${escapeHTML(existing?.time)}"></div>
+
+    </div>
+
+    <label>Status</label><select name="status">
+
+     ${["Scheduled","In progress","Completed","Cancelled"].map(s=>
+
+      `<option ${((existing?.status||"Scheduled")===s)?"selected":""}>${s}</option>`).join("")}
+
+    </select>`;
+
+ document.getElementById("formFields").innerHTML=fields;
+
+ document.getElementById("modal").classList.add("open");
+
+}
+
+function closeModal(){
+
+ document.getElementById("modal").classList.remove("open");
 
 }
 
 document.getElementById("entryForm").addEventListener("submit",e=>{
 
-  e.preventDefault();
+ e.preventDefault();
 
-  const data=Object.fromEntries(new FormData(e.target));
+ const data=Object.fromEntries(new FormData(e.target));
 
-  if(currentType==="customer")customers.push(data);
+ if(currentType==="customer"){
 
-  else jobs.push(data);
+  customers.push(data);
 
-  save();closeModal();e.target.reset();
+  toast("Customer saved.");
+
+ }else{
+
+  if(editingIndex!==null){
+
+   const old=jobs[editingIndex];
+
+   const oldDate=old.date;
+
+   const oldStatus=old.status;
+
+   jobs[editingIndex]={...old,...data};
+
+   if(data.date!==oldDate)
+
+    notifyUser("Job rescheduled",`${data.title} is now scheduled for ${data.date}.`);
+
+   if(data.status==="Cancelled"&&oldStatus!=="Cancelled")
+
+    notifyUser("Job cancelled",`${data.title} has been cancelled.`);
+
+   toast("Job updated.");
+
+  }else{
+
+   jobs.push(data);
+
+   notifyUser("New booking",`${data.title} for ${data.customer} on ${data.date}.`);
+
+   toast("New job saved.");
+
+  }
+
+ }
+
+ save();
+
+ closeModal();
+
+ e.target.reset();
+
+ editingIndex=null;
 
 });
 
 function makeTable(headers,rows){
 
-  if(!rows.length)return '<div class="empty">Nothing here yet. Add your first entry to get started.</div>';
+ if(!rows.length)return '<div class="empty">Nothing here yet. Add your first entry to get started.</div>';
 
-  return `<div style="overflow-x:auto"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table></div>`;
+ return `<div style="overflow-x:auto"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table></div>`;
 
 }
 
 function render(){
 
-  document.getElementById("customerCount").textContent=customers.length;
+ document.getElementById("customerCount").textContent=customers.length;
 
-  document.getElementById("jobCount").textContent=jobs.filter(j=>j.status!=="Completed").length;
+ document.getElementById("jobCount").textContent=
 
-  document.getElementById("upcomingCount").textContent=jobs.filter(j=>j.date>=new Date().toISOString().slice(0,10)&&j.status==="Scheduled").length;
+  jobs.filter(j=>!["Completed","Cancelled"].includes(j.status)).length;
 
-  document.getElementById("invoiceCount").textContent="0";
+ document.getElementById("upcomingCount").textContent=
 
-  document.getElementById("customerTable").innerHTML=makeTable(
+  jobs.filter(j=>j.date>=localDate(new Date())&&j.status==="Scheduled").length;
 
-    ["Name","Phone","Email"],
+ document.getElementById("invoiceCount").textContent="0";
 
-    customers.map(c=>`<tr><td>${escapeHTML(c.name)}</td><td>${escapeHTML(c.phone)}</td><td>${escapeHTML(c.email)}</td></tr>`)
+ document.getElementById("customerTable").innerHTML=makeTable(
+
+  ["Name","Phone","Email"],
+
+  customers.map(c=>`<tr><td>${escapeHTML(c.name)}</td><td>${escapeHTML(c.phone)}</td><td>${escapeHTML(c.email)}</td></tr>`)
+
+ );
+
+ document.getElementById("jobTable").innerHTML=makeTable(
+
+  ["Job","Customer","Date / time","Status",""],
+
+  jobs.map((j,i)=>`<tr>
+
+   <td>${escapeHTML(j.title)}</td>
+
+   <td>${escapeHTML(j.customer)}</td>
+
+   <td>${escapeHTML(j.date)} ${escapeHTML(j.time)}</td>
+
+   <td><span class="tag">${escapeHTML(j.status||"Scheduled")}</span></td>
+
+   <td><button class="secondary small" onclick="openModal('job',${i})">Edit</button></td>
+
+  </tr>`)
+
+ );
+
+ const activity=[
+
+  ...customers.map(c=>"Customer added: "+c.name),
+
+  ...jobs.map(j=>"Job created or updated: "+j.title)
+
+ ].slice(-5).reverse();
+
+ document.getElementById("activity").innerHTML=activity.length
+
+  ?activity.map(a=>`<p>${escapeHTML(a)}</p>`).join("")
+
+  :"Your business activity will appear here.";
+
+ renderCalendar();
+
+}
+
+function changeYear(amount){
+
+ calendarYear+=amount;
+
+ renderCalendar();
+
+}
+
+function goToToday(){
+
+ calendarYear=new Date().getFullYear();
+
+ selectedDate=localDate(new Date());
+
+ renderCalendar();
+
+}
+
+function selectDate(date){
+
+ selectedDate=date;
+
+ calendarYear=Number(date.slice(0,4));
+
+ renderCalendar();
+
+}
+
+function renderCalendar(){
+
+ const yearEl=document.getElementById("calendarYear");
+
+ if(!yearEl)return;
+
+ yearEl.textContent=calendarYear;
+
+ const names=["January","February","March","April","May","June",
+
+  "July","August","September","October","November","December"];
+
+ const weekdays=["S","M","T","W","T","F","S"];
+
+ let html="";
+
+ for(let m=0;m<12;m++){
+
+  const first=new Date(calendarYear,m,1).getDay();
+
+  const count=new Date(calendarYear,m+1,0).getDate();
+
+  let days=weekdays.map(w=>`<div class="weekday">${w}</div>`).join("");
+
+  for(let i=0;i<first;i++)days+='<div class="day blank"> </div>';
+
+  for(let d=1;d<=count;d++){
+
+   const date=calendarYear+"-"+String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+
+   const booked=jobs.some(j=>j.date===date&&j.status!=="Cancelled");
+
+   const today=date===localDate(new Date());
+
+   days+=`<button class="day ${booked?"booked":""} ${date===selectedDate?"selected":""} ${today?"today":""}" onclick="selectDate('${date}')">
+
+    ${d}${booked?'<span class="dot"></span>':""}
+
+   </button>`;
+
+  }
+
+  html+=`<div class="month"><h3>${names[m]}</h3><div class="month-grid">${days}</div></div>`;
+
+ }
+
+ document.getElementById("yearCalendar").innerHTML=html;
+
+ renderDateDetails();
+
+}
+
+function renderDateDetails(){
+
+ const matches=jobs.map((j,i)=>({...j,index:i}))
+
+  .filter(j=>j.date===selectedDate&&j.status!=="Cancelled");
+
+ document.getElementById("dateDetails").innerHTML=`
+
+  <div class="panel">
+
+   <div class="panel-head">
+
+    <h2>${new Date(selectedDate+"T12:00:00").toLocaleDateString(undefined,
+
+     {weekday:"long",month:"long",day:"numeric",year:"numeric"})}</h2>
+
+    <button onclick="openModal('job')">+ Add job</button>
+
+   </div>
+
+   ${matches.length?makeTable(["Job","Customer","Time","Status",""],matches.map(j=>`
+
+    <tr>
+
+     <td>${escapeHTML(j.title)}</td>
+
+     <td>${escapeHTML(j.customer)}</td>
+
+     <td>${escapeHTML(j.time||"—")}</td>
+
+     <td>${escapeHTML(j.status||"Scheduled")}</td>
+
+     <td><button class="secondary small" onclick="openModal('job',${j.index})">Edit</button></td>
+
+    </tr>`))
+
+    :'<div class="empty">No jobs booked for this day.</div>'}
+
+  </div>`;
+
+}
+
+function notifyUser(title,body){
+
+ if("Notification"in window&&Notification.permission==="granted"){
+
+  try{new Notification(title,{body})}
+
+  catch(e){toast(title+": "+body)}
+
+ }else{
+
+  toast(title+": "+body);
+
+ }
+
+}
+
+async function enableNotifications(){
+
+ if(!("Notification"in window)){
+
+  toast("This browser does not support browser notifications.");
+
+  return;
+
+ }
+
+ try{
+
+  const permission=await Notification.requestPermission();
+
+  document.getElementById("notificationStatus").textContent=
+
+   permission==="granted"?"Browser notification permission is enabled.":
+
+   "Notifications were not enabled. You can change browser permissions in Settings.";
+
+  if(permission==="granted"){
+
+   toast("Notification permission enabled.");
+
+   checkReminders();
+
+  }
+
+ }catch(e){
+
+  toast("Could not request notification permission in this browser.");
+
+ }
+
+}
+
+function checkReminders(){
+
+ if(!("Notification"in window)||Notification.permission!=="granted")return;
+
+ const today=localDate(new Date());
+
+ const now=new Date();
+
+ jobs.forEach(j=>{
+
+  if(j.status!=="Scheduled")return;
+
+  const days=Math.round(
+
+   (new Date(j.date+"T12:00:00")-new Date(today+"T12:00:00"))/86400000
 
   );
 
-  const jobRows=jobs.map(j=>`<tr><td>${escapeHTML(j.title)}</td><td>${escapeHTML(j.customer)}</td><td>${escapeHTML(j.date)}</td><td><span class="tag">${escapeHTML(j.status)}</span></td></tr>`);
+  if(days===1&&now.getHours()>=9){
 
-  document.getElementById("jobTable").innerHTML=makeTable(["Job","Customer","Date","Status"],jobRows);
+   const key="cv_reminder_tomorrow_"+j.title+"_"+j.date;
 
-  document.getElementById("scheduleTable").innerHTML=makeTable(["Date","Job","Customer","Status"],
+   if(!localStorage.getItem(key)){
 
-    jobs.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(j=>`<tr><td>${escapeHTML(j.date)}</td><td>${escapeHTML(j.title)}</td><td>${escapeHTML(j.customer)}</td><td>${escapeHTML(j.status)}</td></tr>`)
+    notifyUser("Job tomorrow",`${j.title} for ${j.customer} is scheduled for tomorrow.`);
 
-  );
+    localStorage.setItem(key,"1");
 
-  const activity=[...customers.map(c=>"Customer added: "+c.name),...jobs.map(j=>"Job created: "+j.title)].slice(-5).reverse();
+   }
 
-  document.getElementById("activity").innerHTML=activity.length
+  }
 
-    ? activity.map(a=>`<p>${escapeHTML(a)}</p>`).join("")
+  if(days===0&&now.getHours()>=8){
 
-    : "Your business activity will appear here.";
+   const key="cv_reminder_today_"+j.title+"_"+j.date;
+
+   if(!localStorage.getItem(key)){
+
+    notifyUser("Job today",`${j.title} for ${j.customer} is scheduled for today.`);
+
+    localStorage.setItem(key,"1");
+
+   }
+
+  }
+
+ });
+
+}
+
+if("Notification"in window&&Notification.permission==="granted"){
+
+ document.getElementById("notificationStatus").textContent=
+
+  "Browser notification permission is enabled.";
 
 }
 
 render();
+
+checkReminders();
+
+setInterval(checkReminders,60000);
 
 </script>
 
