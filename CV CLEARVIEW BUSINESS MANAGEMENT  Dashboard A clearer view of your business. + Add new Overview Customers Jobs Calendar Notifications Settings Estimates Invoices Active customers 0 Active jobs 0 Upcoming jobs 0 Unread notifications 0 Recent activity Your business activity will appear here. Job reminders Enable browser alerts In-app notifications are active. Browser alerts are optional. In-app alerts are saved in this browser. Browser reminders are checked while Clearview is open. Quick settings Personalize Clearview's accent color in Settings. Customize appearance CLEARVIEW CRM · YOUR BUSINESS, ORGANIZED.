@@ -12,29 +12,221 @@
 
 <style>
 
-:root{--navy:#172b42;--blue:#315b7d;--bg:#f4f6f8;--white:#fff;--muted:#7b8794;--border:#e4e9ee;--green:#398267;--red:#b94b4b;--accent:#315b7d;--accent-soft:#eaf0f5}
+:root{
 
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#202b36;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+ --navy:#172b42;--blue:#315b7d;--bg:#f4f6f8;
 
-header{background:var(--navy);color:white;padding:19px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand-wrap{display:flex;align-items:center;gap:12px}.brand{font-size:21px;font-weight:700;letter-spacing:.5px}.brand small{display:block;font-size:11px;font-weight:400;opacity:.7;margin-top:4px}.logo{width:43px;height:48px;flex-shrink:0}
+ --white:#fff;--muted:#7b8794;--border:#e4e9ee;
 
-main{max-width:1150px;margin:auto;padding:25px 20px 60px}.topline,.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}h1{font-size:27px;margin:5px 0}h2{font-size:17px;margin:0 0 17px}h3{font-size:15px}.subtitle{color:var(--muted);font-size:14px;margin-top:6px}
+ --green:#398267;--red:#b94b4b;
 
-button{border:0;border-radius:8px;padding:11px 15px;background:var(--accent);color:white;font-size:14px;cursor:pointer;font-weight:600}button.secondary{background:white;color:var(--navy);border:1px solid var(--border)}button.danger{background:#fff0f0;color:var(--red);border:1px solid #f0d5d5}button.small{padding:7px 10px;font-size:12px}button:disabled{opacity:.5;cursor:not-allowed}
+}
 
-nav{display:flex;gap:8px;overflow-x:auto;padding:15px 0;border-bottom:1px solid var(--border);margin-bottom:24px}nav button{white-space:nowrap;background:transparent;color:#687584}nav button.active{background:var(--navy);color:white}
+*{box-sizing:border-box}
 
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}.card,.panel{background:white;border:1px solid var(--border);border-radius:12px;padding:19px}.card p{font-size:13px;color:var(--muted);margin:0 0 13px}.card strong{font-size:28px;color:var(--navy)}.panel{margin-top:18px}
+body{
 
-table{width:100%;border-collapse:collapse;font-size:14px}th{text-align:left;color:var(--muted);font-size:12px;font-weight:600}td,th{padding:13px 8px;border-bottom:1px solid var(--border);vertical-align:middle}.empty{text-align:center;color:var(--muted);padding:28px 8px}.tag{background:var(--accent-soft);color:var(--accent);padding:5px 9px;border-radius:20px;font-size:12px}.section{display:none}.section.active{display:block}
+ margin:0;background:var(--bg);color:#202b36;
 
-input,select,textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;font:inherit;background:white;margin:6px 0 15px}textarea{min-height:85px;resize:vertical}label{font-size:13px;font-weight:600;color:#536170;display:block}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.modal{display:none;position:fixed;inset:0;background:#101b2b99;align-items:center;justify-content:center;padding:18px;z-index:5}.modal.open{display:flex}.modal-box{background:white;border-radius:14px;padding:24px;width:100%;max-width:540px;max-height:90vh;overflow:auto}.modal-box h2{margin-top:0}.actions{display:flex;gap:9px;justify-content:flex-end;flex-wrap:wrap}footer{text-align:center;color:var(--muted);font-size:12px;margin-top:35px}
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 
-.year-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.month{border:1px solid var(--border);border-radius:10px;padding:12px;min-width:0}.month h3{margin:0 0 10px;color:var(--navy)}.month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}.weekday{text-align:center;font-size:10px;color:var(--muted);padding:4px 0}.day{position:relative;border:0;background:#f5f7f9;color:#344252;padding:7px 0;border-radius:5px;font-size:11px;min-width:0}.day.blank{visibility:hidden}.day.booked{background:#e1eee9;color:#24654d;font-weight:700}.day.selected{outline:2px solid var(--accent);outline-offset:1px}.day.today{border:1px solid var(--accent)}.day .dot{display:block;width:5px;height:5px;border-radius:50%;background:var(--green);margin:3px auto 0}.calendar-tools{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}.calendar-tools h2{margin:0;font-size:21px}.section-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}#dateDetails{margin-top:18px}#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--navy);color:white;padding:12px 18px;border-radius:9px;display:none;z-index:10;max-width:90%;font-size:14px}
+}
 
-.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.toolbar input{max-width:260px;margin:0}.profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.detail{background:#f7f9fb;border-radius:9px;padding:12px}.detail strong{display:block;font-size:11px;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}.detail span{white-space:pre-wrap;overflow-wrap:anywhere}.color-options{display:flex;gap:12px;flex-wrap:wrap}.color-choice{display:flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:9px;padding:10px;background:white;color:#263442}.swatch{width:20px;height:20px;border-radius:50%;display:inline-block}.notice{border:1px solid var(--border);border-radius:10px;padding:13px;margin:9px 0;background:white}.notice.unread{border-left:4px solid var(--accent);background:#f8fafc}.notice p{margin:5px 0;color:var(--muted);font-size:13px}.notice small{color:var(--muted)}.muted{color:var(--muted)}.inline-actions{display:flex;gap:6px;flex-wrap:wrap}
+header{
 
-@media(max-width:750px){.year-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cards{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){main{padding:18px 12px 40px}header{padding:15px}.year-grid{grid-template-columns:1fr}.form-grid,.profile-grid{grid-template-columns:1fr}.card,.panel{padding:14px}.brand{font-size:18px}}
+ background:var(--navy);color:white;padding:19px 24px;
+
+ display:flex;justify-content:space-between;align-items:center;gap:12px;
+
+}
+
+.brand-wrap{display:flex;align-items:center;gap:12px}
+
+.brand{font-size:21px;font-weight:700;letter-spacing:.5px}
+
+.brand small{display:block;font-size:11px;font-weight:400;opacity:.7;margin-top:4px}
+
+.logo{width:43px;height:48px;flex-shrink:0}
+
+main{max-width:1150px;margin:auto;padding:25px 20px 60px}
+
+.topline,.panel-head{
+
+ display:flex;justify-content:space-between;align-items:center;
+
+ gap:12px;flex-wrap:wrap;
+
+}
+
+h1{font-size:27px;margin:5px 0}
+
+h2{font-size:17px;margin:0 0 17px}
+
+h3{font-size:15px}
+
+.subtitle{color:var(--muted);font-size:14px;margin-top:6px}
+
+button{
+
+ border:0;border-radius:8px;padding:11px 15px;
+
+ background:var(--navy);color:white;font-size:14px;
+
+ cursor:pointer;font-weight:600;
+
+}
+
+button.secondary{background:white;color:var(--navy);border:1px solid var(--border)}
+
+button.danger{background:#fff0f0;color:var(--red);border:1px solid #f0d5d5}
+
+button.small{padding:7px 10px;font-size:12px}
+
+nav{
+
+ display:flex;gap:8px;overflow-x:auto;padding:15px 0;
+
+ border-bottom:1px solid var(--border);margin-bottom:24px;
+
+}
+
+nav button{white-space:nowrap;background:transparent;color:#687584}
+
+nav button.active{background:var(--navy);color:white}
+
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}
+
+.card,.panel{
+
+ background:white;border:1px solid var(--border);
+
+ border-radius:12px;padding:19px;
+
+}
+
+.card p{font-size:13px;color:var(--muted);margin:0 0 13px}
+
+.card strong{font-size:28px;color:var(--navy)}
+
+.panel{margin-top:18px}
+
+table{width:100%;border-collapse:collapse;font-size:14px}
+
+th{text-align:left;color:var(--muted);font-size:12px;font-weight:600}
+
+td,th{padding:13px 8px;border-bottom:1px solid var(--border)}
+
+.empty{text-align:center;color:var(--muted);padding:28px 8px}
+
+.tag{background:#edf3f6;color:var(--blue);padding:5px 9px;border-radius:20px;font-size:12px}
+
+.section{display:none}
+
+.section.active{display:block}
+
+input,select,textarea{
+
+ width:100%;padding:12px;border:1px solid var(--border);
+
+ border-radius:8px;font:inherit;background:white;margin:6px 0 15px;
+
+}
+
+label{font-size:13px;font-weight:600;color:#536170}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+.modal{
+
+ display:none;position:fixed;inset:0;background:#101b2b99;
+
+ align-items:center;justify-content:center;padding:18px;z-index:5;
+
+}
+
+.modal.open{display:flex}
+
+.modal-box{
+
+ background:white;border-radius:14px;padding:24px;
+
+ width:100%;max-width:470px;max-height:90vh;overflow:auto;
+
+}
+
+.modal-box h2{margin-top:0}
+
+.actions{display:flex;gap:9px;justify-content:flex-end;flex-wrap:wrap}
+
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:35px}
+
+.year-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+
+.month{border:1px solid var(--border);border-radius:10px;padding:12px;min-width:0}
+
+.month h3{margin:0 0 10px;color:var(--navy)}
+
+.month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+
+.weekday{text-align:center;font-size:10px;color:var(--muted);padding:4px 0}
+
+.day{
+
+ position:relative;border:0;background:#f5f7f9;color:#344252;
+
+ padding:7px 0;border-radius:5px;font-size:11px;min-width:0;
+
+}
+
+.day.blank{visibility:hidden}
+
+.day.booked{background:#e1eee9;color:#24654d;font-weight:700}
+
+.day.selected{outline:2px solid var(--blue);outline-offset:1px}
+
+.day.today{border:1px solid var(--blue)}
+
+.day .dot{display:block;width:5px;height:5px;border-radius:50%;background:var(--green);margin:3px auto 0}
+
+.calendar-tools{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+
+.calendar-tools h2{margin:0;font-size:21px}
+
+.section-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+#dateDetails{margin-top:18px}
+
+#toast{
+
+ position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+
+ background:var(--navy);color:white;padding:12px 18px;border-radius:9px;
+
+ display:none;z-index:10;max-width:90%;font-size:14px;
+
+}
+
+@media(max-width:750px){
+
+ .year-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+ .cards{grid-template-columns:repeat(2,1fr)}
+
+}
+
+@media(max-width:480px){
+
+ main{padding:18px 12px 40px}
+
+ header{padding:15px}
+
+ .year-grid{grid-template-columns:1fr}
+
+ .form-grid{grid-template-columns:1fr}
+
+ .card,.panel{padding:14px}
+
+}
 
 </style>
 
@@ -42,117 +234,741 @@ input,select,textarea{width:100%;padding:12px;border:1px solid var(--border);bor
 
 <body>
 
-<header><div class="brand-wrap"><svg class="logo" viewBox="0 0 64 72" role="img" aria-label="Clearview shield CV logo"><path d="M32 3 L58 13 V34 C58 50 47 62 32 69 C17 62 6 50 6 34 V13 Z" fill="none" stroke="#dce8f1" stroke-width="3"/><path d="M32 10 L51 17 V34 C51 46 43 56 32 62 C21 56 13 46 13 34 V17 Z" fill="#315b7d" stroke="#8eabc0" stroke-width="1.5"/><text x="32" y="40" text-anchor="middle" font-size="19" font-family="Georgia,serif" font-weight="bold" fill="white">CV</text></svg><div class="brand">CLEARVIEW<small>BUSINESS MANAGEMENT</small></div></div><span id="today"></span></header>
+<header>
+
+ <div class="brand-wrap">
+
+  <svg class="logo" viewBox="0 0 64 72" role="img" aria-label="Clearview shield CV logo">
+
+   <path d="M32 3 L58 13 V34 C58 50 47 62 32 69 C17 62 6 50 6 34 V13 Z"
+
+    fill="none" stroke="#dce8f1" stroke-width="3"/>
+
+   <path d="M32 10 L51 17 V34 C51 46 43 56 32 62 C21 56 13 46 13 34 V17 Z"
+
+    fill="#315b7d" stroke="#8eabc0" stroke-width="1.5"/>
+
+   <text x="32" y="40" text-anchor="middle" font-size="19"
+
+    font-family="Georgia,serif" font-weight="bold" fill="white">CV</text>
+
+  </svg>
+
+  <div class="brand">CLEARVIEW<small>BUSINESS MANAGEMENT</small></div>
+
+ </div>
+
+ <span id="today"></span>
+
+</header>
 
 <main>
 
-<div class="topline"><div><h1 id="pageTitle">Dashboard</h1><div class="subtitle">A clearer view of your business.</div></div><button onclick="openModal('job')">+ Add new</button></div>
+ <div class="topline">
 
-<nav id="mainNav"><button class="active" onclick="showPage('dashboard',this)">Overview</button><button onclick="showPage('customers',this)">Customers</button><button onclick="showPage('jobs',this)">Jobs</button><button onclick="showPage('schedule',this)">Calendar</button><button onclick="showPage('notifications',this)">Notifications <span id="navUnread"></span></button><button onclick="showPage('settings',this)">Settings</button><button onclick="showPage('estimates',this)">Estimates</button><button onclick="showPage('invoices',this)">Invoices</button></nav>
+  <div>
 
-<section id="dashboard" class="section active"><div class="cards"><div class="card"><p>Total customers</p><strong id="customerCount">0</strong></div><div class="card"><p>Active jobs</p><strong id="jobCount">0</strong></div><div class="card"><p>Upcoming jobs</p><strong id="upcomingCount">0</strong></div><div class="card"><p>Outstanding invoices</p><strong id="invoiceCount">0</strong></div></div>
+   <h1 id="pageTitle">Dashboard</h1>
 
-<div class="panel"><h2>Recent activity</h2><div id="activity" class="empty">Your business activity will appear here.</div></div>
+   <div class="subtitle">A clearer view of your business.</div>
 
-<div class="panel"><div class="panel-head"><h2>Job notifications</h2><button class="secondary" onclick="enableNotifications()">Enable browser notifications</button></div><p class="subtitle" id="notificationStatus">Browser notifications have not been enabled yet.</p><p class="subtitle">Your in-app notifications are saved in this browser. Browser reminders are checked while this website is open.</p></div>
+  </div>
 
-<div class="panel"><h2>Getting started</h2><p class="subtitle">Your workspace is ready. Start by adding your first customer.</p><button onclick="openModal('customer')">Add your first customer</button></div></section>
+  <button onclick="openModal()">+ Add new</button>
 
-<section id="customers" class="section"><div class="panel"><div class="panel-head"><h2>Customer directory</h2><button onclick="openModal('customer')">+ Customer</button></div><div class="toolbar"><input id="customerSearch" placeholder="Search customers..." oninput="renderCustomers()"><button class="secondary small" id="archiveToggle" onclick="toggleArchived()">View archive</button></div><div id="customerTable"></div></div><div id="customerProfile"></div></section>
+ </div>
 
-<section id="jobs" class="section"><div class="panel"><div class="panel-head"><h2>Job management</h2><button onclick="openModal('job')">+ Job</button></div><div id="jobTable"></div></div></section>
+ <nav>
 
-<section id="schedule" class="section"><div class="panel"><div class="calendar-tools"><div><h2 id="calendarYear"></h2><p class="subtitle">Your full-year booking calendar</p></div><div class="section-actions"><button class="secondary" onclick="changeYear(-1)">← Previous</button><button class="secondary" onclick="changeYear(1)">Next →</button><button onclick="goToToday()">Today</button></div></div><div id="yearCalendar" class="year-grid"></div><div id="dateDetails"></div></div></section>
+  <button class="active" onclick="showPage('dashboard',this)">Overview</button>
 
-<section id="notifications" class="section"><div class="panel"><div class="panel-head"><h2>Notifications</h2><div class="inline-actions"><button class="secondary small" onclick="markAllRead()">Mark all read</button><button class="danger small" onclick="clearNotifications()">Clear all</button></div></div><div id="notificationList"></div></div></section>
+  <button onclick="showPage('customers',this)">Customers</button>
 
-<section id="settings" class="section"><div class="panel"><h2>Appearance</h2><p class="subtitle">Choose an accent color for buttons, highlights, and calendar selections.</p><div class="color-options"><button class="color-choice" onclick="setTheme('classic')"><span class="swatch" style="background:#315b7d"></span>Classic blue</button><button class="color-choice" onclick="setTheme('forest')"><span class="swatch" style="background:#39745d"></span>Forest green</button><button class="color-choice" onclick="setTheme('plum')"><span class="swatch" style="background:#76527f"></span>Plum</button><button class="color-choice" onclick="setTheme('amber')"><span class="swatch" style="background:#a66b28"></span>Amber</button><button class="color-choice" onclick="setTheme('slate')"><span class="swatch" style="background:#586675"></span>Slate</button></div></div><div class="panel"><h2>Data backup</h2><p class="subtitle">Download a backup of your customers, jobs, and notifications. Keep this file somewhere safe.</p><button onclick="exportBackup()">Export backup</button><p class="subtitle">Clearview currently saves data in this browser on this device. Cloud accounts and syncing between devices are not enabled yet.</p></div></section>
+  <button onclick="showPage('jobs',this)">Jobs</button>
 
-<section id="estimates" class="section"><div class="panel"><h2>Estimates</h2><p class="subtitle">Estimate tracking will be added in a future development stage.</p></div></section><section id="invoices" class="section"><div class="panel"><h2>Invoices</h2><p class="subtitle">Invoice and payment tracking will be added in a future development stage.</p></div></section>
+  <button onclick="showPage('schedule',this)">Calendar</button>
 
-<footer>CLEARVIEW CRM · YOUR BUSINESS, ORGANIZED.</footer></main>
+  <button onclick="showPage('estimates',this)">Estimates</button>
 
-<div class="modal" id="modal"><div class="modal-box"><h2 id="modalTitle">Add customer</h2><form id="entryForm"><div id="formFields"></div><div class="actions"><button type="button" class="secondary" onclick="closeModal()">Cancel</button><button type="submit">Save</button></div></form></div></div><div id="toast"></div>
+  <button onclick="showPage('invoices',this)">Invoices</button>
+
+ </nav>
+
+ <section id="dashboard" class="section active">
+
+  <div class="cards">
+
+   <div class="card"><p>Total customers</p><strong id="customerCount">0</strong></div>
+
+   <div class="card"><p>Active jobs</p><strong id="jobCount">0</strong></div>
+
+   <div class="card"><p>Upcoming jobs</p><strong id="upcomingCount">0</strong></div>
+
+   <div class="card"><p>Outstanding invoices</p><strong id="invoiceCount">0</strong></div>
+
+  </div>
+
+  <div class="panel">
+
+   <h2>Recent activity</h2>
+
+   <div id="activity" class="empty">Your business activity will appear here.</div>
+
+  </div>
+
+  <div class="panel">
+
+   <div class="panel-head">
+
+    <h2>Job notifications</h2>
+
+    <button class="secondary" onclick="enableNotifications()">Enable notifications</button>
+
+   </div>
+
+   <p class="subtitle" id="notificationStatus">Notifications have not been enabled yet.</p>
+
+   <p class="subtitle">Reminders are checked while this website is open.</p>
+
+   <p class="subtitle">You can also view your upcoming jobs in the Calendar tab.</p>
+
+  </div>
+
+  <div class="panel">
+
+   <h2>Getting started</h2>
+
+   <p class="subtitle">Your workspace is ready. Start by adding your first customer.</p>
+
+   <button onclick="openModal('customer')">Add your first customer</button>
+
+  </div>
+
+ </section>
+
+ <section id="customers" class="section">
+
+  <div class="panel">
+
+   <div class="panel-head">
+
+    <h2>Customer directory</h2>
+
+    <button onclick="openModal('customer')">+ Customer</button>
+
+   </div>
+
+   <div id="customerTable"></div>
+
+  </div>
+
+ </section>
+
+ <section id="jobs" class="section">
+
+  <div class="panel">
+
+   <div class="panel-head">
+
+    <h2>Job management</h2>
+
+    <button onclick="openModal('job')">+ Job</button>
+
+   </div>
+
+   <div id="jobTable"></div>
+
+  </div>
+
+ </section>
+
+ <section id="schedule" class="section">
+
+  <div class="panel">
+
+   <div class="calendar-tools">
+
+    <div>
+
+     <h2 id="calendarYear"></h2>
+
+     <p class="subtitle">Your full-year booking calendar</p>
+
+    </div>
+
+    <div class="section-actions">
+
+     <button class="secondary" onclick="changeYear(-1)">← Previous</button>
+
+     <button class="secondary" onclick="changeYear(1)">Next →</button>
+
+     <button onclick="goToToday()">Today</button>
+
+    </div>
+
+   </div>
+
+   <div id="yearCalendar" class="year-grid"></div>
+
+   <div id="dateDetails"></div>
+
+  </div>
+
+ </section>
+
+ <section id="estimates" class="section">
+
+  <div class="panel">
+
+   <h2>Estimates</h2>
+
+   <p class="subtitle">Estimate tracking will be added in a future development stage.</p>
+
+  </div>
+
+ </section>
+
+ <section id="invoices" class="section">
+
+  <div class="panel">
+
+   <h2>Invoices</h2>
+
+   <p class="subtitle">Invoice and payment tracking will be added in a future development stage.</p>
+
+  </div>
+
+ </section>
+
+ <footer>CLEARVIEW CRM · YOUR BUSINESS, ORGANIZED.</footer>
+
+</main>
+
+<div class="modal" id="modal">
+
+ <div class="modal-box">
+
+  <h2 id="modalTitle">Add customer</h2>
+
+  <form id="entryForm">
+
+   <div id="formFields"></div>
+
+   <div class="actions">
+
+    <button type="button" class="secondary" onclick="closeModal()">Cancel</button>
+
+    <button type="submit">Save</button>
+
+   </div>
+
+  </form>
+
+ </div>
+
+</div>
+
+<div id="toast"></div>
 
 <script>
 
-const load=key=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return []}};
+const load=key=>JSON.parse(localStorage.getItem(key)||"[]");
 
-let customers=load('cv_customers'),jobs=load('cv_jobs'),notifications=load('cv_notifications');
+let customers=load("cv_customers");
 
-let currentType='customer',editingIndex=null,editingCustomerId=null,showArchived=false,calendarYear=new Date().getFullYear(),selectedDate=localDate(new Date());
+let jobs=load("cv_jobs");
 
-function localDate(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+let currentType="customer";
 
-function uid(){return 'cv_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8)}
+let editingIndex=null;
 
-function escapeHTML(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+let calendarYear=new Date().getFullYear();
 
-function toast(message){const el=document.getElementById('toast');el.textContent=message;el.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display='none',3500)}
+let selectedDate=localDate(new Date());
 
-document.getElementById('today').textContent=new Date().toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
+function localDate(d){
 
-function save(){localStorage.setItem('cv_customers',JSON.stringify(customers));localStorage.setItem('cv_jobs',JSON.stringify(jobs));localStorage.setItem('cv_notifications',JSON.stringify(notifications));render()}
+ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 
-function addNotification(title,message){notifications.unshift({id:uid(),title,message,date:new Date().toISOString(),read:false});notifications=notifications.slice(0,150)}
+}
 
-function showPage(page,button){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(page).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));if(button)button.classList.add('active');document.getElementById('pageTitle').textContent=page==='schedule'?'Calendar':page.charAt(0).toUpperCase()+page.slice(1);if(page==='schedule')renderCalendar();if(page==='notifications')renderNotifications();if(page==='customers')renderCustomers()}
+function escapeHTML(value){
 
-function customerId(c){if(!c.id)c.id=uid();return c.id}
+ return String(value||"").replace(/[&<>"']/g,c=>({
 
-function openModal(type='customer',index=null){currentType=type;editingIndex=index;const existing=index!==null?jobs[index]:null;const customer=type==='customer'&&index!==null?customers[index]:null;document.getElementById('modalTitle').textContent=type==='customer'?(customer?'Edit customer':'Add customer'):(existing?'Edit job':'Add job');
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
 
-let fields='';
+ })[c]);
 
-if(type==='customer'){fields=`<label>Customer name</label><input name="name" required placeholder="Full name" value="${escapeHTML(customer?.name||'')}"><label>Company (optional)</label><input name="company" placeholder="Company name" value="${escapeHTML(customer?.company||'')}"><div class="form-grid"><div><label>Phone number</label><input name="phone" placeholder="Phone" value="${escapeHTML(customer?.phone||'')}"></div><div><label>Email address</label><input name="email" type="email" placeholder="Email" value="${escapeHTML(customer?.email||'')}"></div></div><label>Service address</label><input name="address" placeholder="Street, city, ZIP" value="${escapeHTML(customer?.address||'')}"><label>Customer notes</label><textarea name="notes" placeholder="Preferences, access instructions, details...">${escapeHTML(customer?.notes||'')}</textarea>`}
+}
 
-else{fields=`<label>Job title</label><input name="title" required placeholder="Window cleaning" value="${escapeHTML(existing?.title||'')}"><label>Customer</label><select name="customer" required><option value="">Select customer</option>${customers.filter(c=>!c.archived).map(c=>`<option value="${escapeHTML(c.name)}" ${existing?.customer===c.name?'selected':''}>${escapeHTML(c.name)}</option>`).join('')}</select><div class="form-grid"><div><label>Job date</label><input name="date" type="date" required value="${escapeHTML(existing?.date||selectedDate)}"></div><div><label>Job time (optional)</label><input name="time" type="time" value="${escapeHTML(existing?.time||'')}"></div></div><label>Status</label><select name="status">${['Scheduled','In progress','Completed','Cancelled'].map(s=>`<option ${((existing?.status||'Scheduled')===s)?'selected':''}>${s}</option>`).join('')}</select><label>Job notes</label><textarea name="notes" placeholder="Scope of work, materials, reminders...">${escapeHTML(existing?.notes||'')}</textarea>`}
+function toast(message){
 
-document.getElementById('formFields').innerHTML=fields;document.getElementById('modal').classList.add('open')}
+ const el=document.getElementById("toast");
 
-function closeModal(){document.getElementById('modal').classList.remove('open')}
+ el.textContent=message;
 
-document.getElementById('entryForm').addEventListener('submit',e=>{e.preventDefault();const data=Object.fromEntries(new FormData(e.target));if(currentType==='customer'){if(editingIndex!==null){const old=customers[editingIndex];customers[editingIndex]={...old,...data,id:old.id||uid()};addNotification('Customer updated',`${data.name}'s customer profile was updated.`);toast('Customer updated.')}else{data.id=uid();data.archived=false;customers.push(data);addNotification('New customer',`${data.name} was added to your customers.`);toast('Customer saved.')}}else{if(editingIndex!==null){const old=jobs[editingIndex],changedDate=old.date!==data.date||old.time!==data.time; jobs[editingIndex]={...old,...data};if(changedDate)addNotification('Job rescheduled',`${data.title} is now scheduled for ${data.date}${data.time?' at '+data.time:''}.`);if(data.status==='Cancelled'&&old.status!=='Cancelled')addNotification('Job cancelled',`${data.title} has been cancelled.`);if(data.status==='Completed'&&old.status!=='Completed')addNotification('Job completed',`${data.title} was marked completed.`);toast('Job updated.')}else{jobs.push(data);addNotification('New booking',`${data.title} for ${data.customer} on ${data.date}.`);toast('New job saved.')}}save();closeModal();e.target.reset();editingIndex=null});
+ el.style.display="block";
 
-function makeTable(headers,rows){if(!rows.length)return '<div class="empty">Nothing here yet. Add your first entry to get started.</div>';return `<div style="overflow-x:auto"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`}
+ clearTimeout(window.toastTimer);
 
-function renderCustomers(){const query=(document.getElementById('customerSearch')?.value||'').toLowerCase();const list=customers.map((c,i)=>({...c,_index:i})).filter(c=>!!c.archived===showArchived).filter(c=>[c.name,c.company,c.phone,c.email,c.address].join(' ').toLowerCase().includes(query));document.getElementById('archiveToggle').textContent=showArchived?'View active customers':'View archive';document.getElementById('customerTable').innerHTML=makeTable(['Name / Company','Phone','Email',''],list.map(c=>`<tr><td><strong>${escapeHTML(c.name)}</strong>${c.company?`<br><span class="muted">${escapeHTML(c.company)}</span>`:''}</td><td>${escapeHTML(c.phone||'—')}</td><td>${escapeHTML(c.email||'—')}</td><td><div class="inline-actions">${!showArchived?`<button class="secondary small" onclick="viewCustomer(${c._index})">Profile</button><button class="secondary small" onclick="openModal('customer',${c._index})">Edit</button><button class="secondary small" onclick="archiveCustomer(${c._index})">Archive</button>`:`<button class="secondary small" onclick="restoreCustomer(${c._index})">Restore</button><button class="danger small" onclick="deleteCustomer(${c._index})">Delete</button>`}</div></td></tr>`))}
+ window.toastTimer=setTimeout(()=>el.style.display="none",3500);
 
-function toggleArchived(){showArchived=!showArchived;document.getElementById('customerProfile').innerHTML='';renderCustomers()}
+}
 
-function archiveCustomer(i){if(!confirm(`Archive ${customers[i].name}? Their job history will be kept.`))return;customers[i].archived=true;addNotification('Customer archived',`${customers[i].name} was moved to the archive.`);save();toast('Customer archived.')}
+document.getElementById("today").textContent=
 
-function restoreCustomer(i){customers[i].archived=false;addNotification('Customer restored',`${customers[i].name} was restored.`);save();toast('Customer restored.')}
+ new Date().toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
 
-function deleteCustomer(i){const c=customers[i];if(!confirm(`Permanently delete ${c.name}? This cannot be undone. Their jobs will remain in your job history.`))return;customers.splice(i,1);addNotification('Customer deleted',`${c.name} was permanently deleted.`);save();toast('Customer deleted.')}
+function save(){
 
-function viewCustomer(i){const c=customers[i],history=jobs.map((j,n)=>({...j,_index:n})).filter(j=>j.customer===c.name);document.getElementById('customerProfile').innerHTML=`<div class="panel"><div class="panel-head"><div><h2>${escapeHTML(c.name)}</h2><p class="subtitle">Customer profile${c.company?' · '+escapeHTML(c.company):''}</p></div><div class="inline-actions"><button class="secondary small" onclick="openModal('customer',${i})">Edit profile</button><button class="secondary small" onclick="document.getElementById('customerProfile').innerHTML=''">Close</button></div></div><div class="profile-grid"><div class="detail"><strong>Phone</strong><span>${escapeHTML(c.phone||'—')}</span></div><div class="detail"><strong>Email</strong><span>${escapeHTML(c.email||'—')}</span></div><div class="detail"><strong>Address</strong><span>${escapeHTML(c.address||'—')}</span></div><div class="detail"><strong>Company</strong><span>${escapeHTML(c.company||'—')}</span></div></div><div class="detail" style="margin-top:12px"><strong>Notes</strong><span>${escapeHTML(c.notes||'No notes yet.')}</span></div><h3 style="margin-top:22px">Job history</h3>${makeTable(['Job','Date','Status'],history.map(j=>`<tr><td>${escapeHTML(j.title)}</td><td>${escapeHTML(j.date)} ${escapeHTML(j.time||'')}</td><td>${escapeHTML(j.status||'Scheduled')}</td></tr>`))}</div>`}
+ localStorage.setItem("cv_customers",JSON.stringify(customers));
 
-function render(){document.getElementById('customerCount').textContent=customers.filter(c=>!c.archived).length;document.getElementById('jobCount').textContent=jobs.filter(j=>!['Completed','Cancelled'].includes(j.status)).length;document.getElementById('upcomingCount').textContent=jobs.filter(j=>j.date>=localDate(new Date())&&j.status==='Scheduled').length;document.getElementById('invoiceCount').textContent='0';renderCustomers();document.getElementById('jobTable').innerHTML=makeTable(['Job','Customer','Date / time','Status',''],jobs.map((j,i)=>`<tr><td>${escapeHTML(j.title)}${j.notes?'<br><span class="muted">'+escapeHTML(j.notes)+'</span>':''}</td><td>${escapeHTML(j.customer)}</td><td>${escapeHTML(j.date)} ${escapeHTML(j.time||'')}</td><td><span class="tag">${escapeHTML(j.status||'Scheduled')}</span></td><td><button class="secondary small" onclick="openModal('job',${i})">Edit</button></td></tr>`));const activity=[...notifications.slice(0,5).map(n=>n.title+': '+n.message)];document.getElementById('activity').innerHTML=activity.length?activity.map(a=>`<p>${escapeHTML(a)}</p>`).join(''):'Your business activity will appear here.';renderCalendar();renderNotifications()}
+ localStorage.setItem("cv_jobs",JSON.stringify(jobs));
 
-function changeYear(amount){calendarYear+=amount;renderCalendar()}function goToToday(){calendarYear=new Date().getFullYear();selectedDate=localDate(new Date());renderCalendar()}function selectDate(date){selectedDate=date;calendarYear=Number(date.slice(0,4));renderCalendar()}
+ render();
 
-function renderCalendar(){const yearEl=document.getElementById('calendarYear');if(!yearEl)return;yearEl.textContent=calendarYear;const names=['January','February','March','April','May','June','July','August','September','October','November','December'],weekdays=['S','M','T','W','T','F','S'];let html='';for(let m=0;m<12;m++){const first=new Date(calendarYear,m,1).getDay(),count=new Date(calendarYear,m+1,0).getDate();let days=weekdays.map(w=>`<div class="weekday">${w}</div>`).join('');for(let i=0;i<first;i++)days+='<div class="day blank"> </div>';for(let d=1;d<=count;d++){const date=calendarYear+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'),booked=jobs.some(j=>j.date===date&&j.status!=='Cancelled'),today=date===localDate(new Date());days+=`<button class="day ${booked?'booked':''} ${date===selectedDate?'selected':''} ${today?'today':''}" onclick="selectDate('${date}')">${d}${booked?'<span class="dot"></span>':''}</button>`}html+=`<div class="month"><h3>${names[m]}</h3><div class="month-grid">${days}</div></div>`}document.getElementById('yearCalendar').innerHTML=html;renderDateDetails()}
+}
 
-function renderDateDetails(){const matches=jobs.map((j,i)=>({...j,index:i})).filter(j=>j.date===selectedDate&&j.status!=='Cancelled');document.getElementById('dateDetails').innerHTML=`<div class="panel"><div class="panel-head"><h2>${new Date(selectedDate+'T12:00:00').toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</h2><button onclick="openModal('job')">+ Add job</button></div>${matches.length?makeTable(['Job','Customer','Time','Status',''],matches.map(j=>`<tr><td>${escapeHTML(j.title)}</td><td>${escapeHTML(j.customer)}</td><td>${escapeHTML(j.time||'—')}</td><td>${escapeHTML(j.status||'Scheduled')}</td><td><button class="secondary small" onclick="openModal('job',${j.index})">Edit</button></td></tr>`)):'<div class="empty">No jobs booked for this day.</div>'}</div>`}
+function showPage(page,button){
 
-function renderNotifications(){const unread=notifications.filter(n=>!n.read).length;document.getElementById('navUnread').textContent=unread?`(${unread})`:'';const el=document.getElementById('notificationList');if(!el)return;el.innerHTML=notifications.length?notifications.map(n=>`<div class="notice ${n.read?'':'unread'}"><div class="panel-head"><strong>${escapeHTML(n.title)}</strong>${n.read?'<span class="muted">Read</span>':`<button class="secondary small" onclick="markRead('${n.id}')">Mark read</button>`}</div><p>${escapeHTML(n.message)}</p><small>${new Date(n.date).toLocaleString()}</small></div>`).join(''):'<div class="empty">You do not have any notifications yet.</div>'}
+ document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
 
-function markRead(id){const n=notifications.find(x=>x.id===id);if(n)n.read=true;save()}function markAllRead(){notifications.forEach(n=>n.read=true);save();toast('All notifications marked as read.')}function clearNotifications(){if(!notifications.length)return;if(!confirm('Clear all notifications?'))return;notifications=[];save();toast('Notifications cleared.')}
+ document.getElementById(page).classList.add("active");
 
-function setTheme(name){const themes={classic:'#315b7d',forest:'#39745d',plum:'#76527f',amber:'#a66b28',slate:'#586675'},color=themes[name]||themes.classic;document.documentElement.style.setProperty('--accent',color);document.documentElement.style.setProperty('--accent-soft',color+'18');localStorage.setItem('cv_theme',name);toast('Appearance updated.')}
+ document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
 
-function exportBackup(){const data={customers,jobs,notifications,exportedAt:new Date().toISOString()};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='clearview-backup-'+localDate(new Date())+'.json';a.click();URL.revokeObjectURL(url);toast('Backup downloaded.')}
+ button.classList.add("active");
 
-function notifyUser(title,body){addNotification(title,body);if('Notification'in window&&Notification.permission==='granted'){try{new Notification(title,{body})}catch(e){}}save()}
+ document.getElementById("pageTitle").textContent=
 
-async function enableNotifications(){if(!('Notification'in window)){toast('This browser does not support browser notifications.');return}try{const permission=await Notification.requestPermission();document.getElementById('notificationStatus').textContent=permission==='granted'?'Browser notification permission is enabled.':'Notifications were not enabled. You can change browser permissions in Settings.';if(permission==='granted'){toast('Notification permission enabled.');checkReminders()}}catch(e){toast('Could not request browser notification permission in this browser.')}}
+  page==="schedule"?"Calendar":page.charAt(0).toUpperCase()+page.slice(1);
 
-function checkReminders(){if(!('Notification'in window)||Notification.permission!=='granted')return;const today=localDate(new Date()),now=new Date();jobs.forEach(j=>{if(j.status!=='Scheduled')return;const days=Math.round((new Date(j.date+'T12:00:00')-new Date(today+'T12:00:00'))/86400000);if((days===1&&now.getHours()>=9)||(days===0&&now.getHours()>=8)){const key='cv_reminder_'+days+'_'+j.title+'_'+j.date;if(!localStorage.getItem(key)){localStorage.setItem(key,'1');notifyUser(days===1?'Job tomorrow':'Job today',`${j.title} for ${j.customer} is scheduled for ${days===1?'tomorrow':'today'}.`)}}})}
+ if(page==="schedule")renderCalendar();
 
-const savedTheme=localStorage.getItem('cv_theme');if(savedTheme)setTheme(savedTheme);if('Notification'in window&&Notification.permission==='granted')document.getElementById('notificationStatus').textContent='Browser notification permission is enabled.';
+}
 
-render();checkReminders();setInterval(checkReminders,60000);
+function openModal(type="customer",index=null){
+
+ currentType=type;
+
+ editingIndex=index;
+
+ const existing=index!==null?jobs[index]:null;
+
+ document.getElementById("modalTitle").textContent=
+
+  type==="customer"?"Add customer":(existing?"Edit job":"Add job");
+
+ const fields=type==="customer"
+
+ ? `<label>Customer name</label><input name="name" required placeholder="Full name">
+
+    <label>Phone number</label><input name="phone" placeholder="Phone">
+
+    <label>Email address</label><input name="email" type="email" placeholder="Email">
+
+    <label>Address</label><input name="address" placeholder="Service address">`
+
+ : `<label>Job title</label><input name="title" required placeholder="Window cleaning" value="${escapeHTML(existing?.title)}">
+
+    <label>Customer</label><select name="customer" required>
+
+     <option value="">Select customer</option>
+
+     ${customers.map(c=>`<option ${existing?.customer===c.name?"selected":""}>${escapeHTML(c.name)}</option>`).join("")}
+
+    </select>
+
+    <div class="form-grid">
+
+     <div><label>Job date</label><input name="date" type="date" required value="${escapeHTML(existing?.date)}"></div>
+
+     <div><label>Job time (optional)</label><input name="time" type="time" value="${escapeHTML(existing?.time)}"></div>
+
+    </div>
+
+    <label>Status</label><select name="status">
+
+     ${["Scheduled","In progress","Completed","Cancelled"].map(s=>
+
+      `<option ${((existing?.status||"Scheduled")===s)?"selected":""}>${s}</option>`).join("")}
+
+    </select>`;
+
+ document.getElementById("formFields").innerHTML=fields;
+
+ document.getElementById("modal").classList.add("open");
+
+}
+
+function closeModal(){
+
+ document.getElementById("modal").classList.remove("open");
+
+}
+
+document.getElementById("entryForm").addEventListener("submit",e=>{
+
+ e.preventDefault();
+
+ const data=Object.fromEntries(new FormData(e.target));
+
+ if(currentType==="customer"){
+
+  customers.push(data);
+
+  toast("Customer saved.");
+
+ }else{
+
+  if(editingIndex!==null){
+
+   const old=jobs[editingIndex];
+
+   const oldDate=old.date;
+
+   const oldStatus=old.status;
+
+   jobs[editingIndex]={...old,...data};
+
+   if(data.date!==oldDate)
+
+    notifyUser("Job rescheduled",`${data.title} is now scheduled for ${data.date}.`);
+
+   if(data.status==="Cancelled"&&oldStatus!=="Cancelled")
+
+    notifyUser("Job cancelled",`${data.title} has been cancelled.`);
+
+   toast("Job updated.");
+
+  }else{
+
+   jobs.push(data);
+
+   notifyUser("New booking",`${data.title} for ${data.customer} on ${data.date}.`);
+
+   toast("New job saved.");
+
+  }
+
+ }
+
+ save();
+
+ closeModal();
+
+ e.target.reset();
+
+ editingIndex=null;
+
+});
+
+function makeTable(headers,rows){
+
+ if(!rows.length)return '<div class="empty">Nothing here yet. Add your first entry to get started.</div>';
+
+ return `<div style="overflow-x:auto"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table></div>`;
+
+}
+
+function render(){
+
+ document.getElementById("customerCount").textContent=customers.length;
+
+ document.getElementById("jobCount").textContent=
+
+  jobs.filter(j=>!["Completed","Cancelled"].includes(j.status)).length;
+
+ document.getElementById("upcomingCount").textContent=
+
+  jobs.filter(j=>j.date>=localDate(new Date())&&j.status==="Scheduled").length;
+
+ document.getElementById("invoiceCount").textContent="0";
+
+ document.getElementById("customerTable").innerHTML=makeTable(
+
+  ["Name","Phone","Email"],
+
+  customers.map(c=>`<tr><td>${escapeHTML(c.name)}</td><td>${escapeHTML(c.phone)}</td><td>${escapeHTML(c.email)}</td></tr>`)
+
+ );
+
+ document.getElementById("jobTable").innerHTML=makeTable(
+
+  ["Job","Customer","Date / time","Status",""],
+
+  jobs.map((j,i)=>`<tr>
+
+   <td>${escapeHTML(j.title)}</td>
+
+   <td>${escapeHTML(j.customer)}</td>
+
+   <td>${escapeHTML(j.date)} ${escapeHTML(j.time)}</td>
+
+   <td><span class="tag">${escapeHTML(j.status||"Scheduled")}</span></td>
+
+   <td><button class="secondary small" onclick="openModal('job',${i})">Edit</button></td>
+
+  </tr>`)
+
+ );
+
+ const activity=[
+
+  ...customers.map(c=>"Customer added: "+c.name),
+
+  ...jobs.map(j=>"Job created or updated: "+j.title)
+
+ ].slice(-5).reverse();
+
+ document.getElementById("activity").innerHTML=activity.length
+
+  ?activity.map(a=>`<p>${escapeHTML(a)}</p>`).join("")
+
+  :"Your business activity will appear here.";
+
+ renderCalendar();
+
+}
+
+function changeYear(amount){
+
+ calendarYear+=amount;
+
+ renderCalendar();
+
+}
+
+function goToToday(){
+
+ calendarYear=new Date().getFullYear();
+
+ selectedDate=localDate(new Date());
+
+ renderCalendar();
+
+}
+
+function selectDate(date){
+
+ selectedDate=date;
+
+ calendarYear=Number(date.slice(0,4));
+
+ renderCalendar();
+
+}
+
+function renderCalendar(){
+
+ const yearEl=document.getElementById("calendarYear");
+
+ if(!yearEl)return;
+
+ yearEl.textContent=calendarYear;
+
+ const names=["January","February","March","April","May","June",
+
+  "July","August","September","October","November","December"];
+
+ const weekdays=["S","M","T","W","T","F","S"];
+
+ let html="";
+
+ for(let m=0;m<12;m++){
+
+  const first=new Date(calendarYear,m,1).getDay();
+
+  const count=new Date(calendarYear,m+1,0).getDate();
+
+  let days=weekdays.map(w=>`<div class="weekday">${w}</div>`).join("");
+
+  for(let i=0;i<first;i++)days+='<div class="day blank"> </div>';
+
+  for(let d=1;d<=count;d++){
+
+   const date=calendarYear+"-"+String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0");
+
+   const booked=jobs.some(j=>j.date===date&&j.status!=="Cancelled");
+
+   const today=date===localDate(new Date());
+
+   days+=`<button class="day ${booked?"booked":""} ${date===selectedDate?"selected":""} ${today?"today":""}" onclick="selectDate('${date}')">
+
+    ${d}${booked?'<span class="dot"></span>':""}
+
+   </button>`;
+
+  }
+
+  html+=`<div class="month"><h3>${names[m]}</h3><div class="month-grid">${days}</div></div>`;
+
+ }
+
+ document.getElementById("yearCalendar").innerHTML=html;
+
+ renderDateDetails();
+
+}
+
+function renderDateDetails(){
+
+ const matches=jobs.map((j,i)=>({...j,index:i}))
+
+  .filter(j=>j.date===selectedDate&&j.status!=="Cancelled");
+
+ document.getElementById("dateDetails").innerHTML=`
+
+  <div class="panel">
+
+   <div class="panel-head">
+
+    <h2>${new Date(selectedDate+"T12:00:00").toLocaleDateString(undefined,
+
+     {weekday:"long",month:"long",day:"numeric",year:"numeric"})}</h2>
+
+    <button onclick="openModal('job')">+ Add job</button>
+
+   </div>
+
+   ${matches.length?makeTable(["Job","Customer","Time","Status",""],matches.map(j=>`
+
+    <tr>
+
+     <td>${escapeHTML(j.title)}</td>
+
+     <td>${escapeHTML(j.customer)}</td>
+
+     <td>${escapeHTML(j.time||"—")}</td>
+
+     <td>${escapeHTML(j.status||"Scheduled")}</td>
+
+     <td><button class="secondary small" onclick="openModal('job',${j.index})">Edit</button></td>
+
+    </tr>`))
+
+    :'<div class="empty">No jobs booked for this day.</div>'}
+
+  </div>`;
+
+}
+
+function notifyUser(title,body){
+
+ if("Notification"in window&&Notification.permission==="granted"){
+
+  try{new Notification(title,{body})}
+
+  catch(e){toast(title+": "+body)}
+
+ }else{
+
+  toast(title+": "+body);
+
+ }
+
+}
+
+async function enableNotifications(){
+
+ if(!("Notification"in window)){
+
+  toast("This browser does not support browser notifications.");
+
+  return;
+
+ }
+
+ try{
+
+  const permission=await Notification.requestPermission();
+
+  document.getElementById("notificationStatus").textContent=
+
+   permission==="granted"?"Browser notification permission is enabled.":
+
+   "Notifications were not enabled. You can change browser permissions in Settings.";
+
+  if(permission==="granted"){
+
+   toast("Notification permission enabled.");
+
+   checkReminders();
+
+  }
+
+ }catch(e){
+
+  toast("Could not request notification permission in this browser.");
+
+ }
+
+}
+
+function checkReminders(){
+
+ if(!("Notification"in window)||Notification.permission!=="granted")return;
+
+ const today=localDate(new Date());
+
+ const now=new Date();
+
+ jobs.forEach(j=>{
+
+  if(j.status!=="Scheduled")return;
+
+  const days=Math.round(
+
+   (new Date(j.date+"T12:00:00")-new Date(today+"T12:00:00"))/86400000
+
+  );
+
+  if(days===1&&now.getHours()>=9){
+
+   const key="cv_reminder_tomorrow_"+j.title+"_"+j.date;
+
+   if(!localStorage.getItem(key)){
+
+    notifyUser("Job tomorrow",`${j.title} for ${j.customer} is scheduled for tomorrow.`);
+
+    localStorage.setItem(key,"1");
+
+   }
+
+  }
+
+  if(days===0&&now.getHours()>=8){
+
+   const key="cv_reminder_today_"+j.title+"_"+j.date;
+
+   if(!localStorage.getItem(key)){
+
+    notifyUser("Job today",`${j.title} for ${j.customer} is scheduled for today.`);
+
+    localStorage.setItem(key,"1");
+
+   }
+
+  }
+
+ });
+
+}
+
+if("Notification"in window&&Notification.permission==="granted"){
+
+ document.getElementById("notificationStatus").textContent=
+
+  "Browser notification permission is enabled.";
+
+}
+
+render();
+
+checkReminders();
+
+setInterval(checkReminders,60000);
 
 </script>
 
